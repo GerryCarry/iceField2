@@ -62,5 +62,8 @@ public class inventoryPanel extends JPanel{
 		}
 		
 		g.drawImage(food, 33, 103, null);
+		
+		tesztDraw tD = new tesztDraw();
+		tD.draw(g);
 	}
 }
