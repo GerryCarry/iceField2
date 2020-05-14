@@ -1,16 +1,21 @@
 package iceField;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+
 import java.awt.*;
 
-public class BoardPanel extends JPanel{
+public class BoardPanel extends JPanel implements MouseListener{
 
     private BufferedImage field;
     private BufferedImage iglu;
@@ -18,6 +23,8 @@ public class BoardPanel extends JPanel{
     private BufferedImage polarBear;
     private BufferedImage explorer;
     private BufferedImage tent;
+    
+    private fieldView fieldV;
 
     public BoardPanel() {
        try {                
@@ -32,6 +39,8 @@ public class BoardPanel extends JPanel{
        }
        
        this.setBounds(300, 0, 700, 680);
+       fieldV = new fieldView();
+       addMouseListener(this);
     }
 
     @Override
@@ -57,6 +66,45 @@ public class BoardPanel extends JPanel{
         g.drawImage(polarBear, 160, 75, this);
         g.drawImage(explorer, 210, 75, this);
         g.drawImage(tent, 260, 78, this);
+        
+        fieldV.draw(g);
+        
         }
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		Point p = e.getPoint();
+		Point c = fieldV.getCenter();
+		double a = (p.x-c.x) * (p.x-c.x);
+		double b = (p.y-c.y) * (p.y-c.y);
+		double cp = 22 * 22;
+		if(a + b < cp ){
+			System.out.println("KATT");
+		}
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
    }
 

@@ -10,24 +10,32 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
-import javax.swing.JLabel;
 import javax.swing.*;
 
-
-
-public class tesztDraw {
+public class fieldView {
 	
+	private Point pCenter;
+	private Point pCoordinate;
 	private Image image;
-	public tesztDraw(){
+	
+	public fieldView(){
 		try{
-			image = ImageIO.read(new File("divingsuit.png"));
+			image = ImageIO.read(new File("IceField_2.png"));
 		} 
 		catch(IOException ex){
-			
+			System.out.println("ERR");
 		}
+		
+		pCoordinate = new Point(300,500);
+		pCenter = new Point(325,525);
+	}
+	
+	public Point getCenter(){
+		return pCenter;
 	}
 	
 	public void draw(Graphics g){
-		g.drawImage(image, 123, 103, null);
+		g.drawImage(image, pCoordinate.x, pCoordinate.y, null);
+		System.out.println("HALI");
 	}
 }

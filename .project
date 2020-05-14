@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>GamePanel.java</name>
+			<type>1</type>
+			<location>C:/Users/Geri/workspace/iceField/src/iceField/GamePanel.java</location>
+		</link>
+	</linkedResources>
 </projectDescription>
