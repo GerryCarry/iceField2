@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,7 +25,7 @@ public class BoardPanel extends JPanel implements MouseListener{
     private BufferedImage explorer;
     private BufferedImage tent;
     
-    private fieldView fieldV;
+    private ArrayList<fieldView> fieldV;
 
     public BoardPanel() {
        try {                
@@ -39,7 +40,12 @@ public class BoardPanel extends JPanel implements MouseListener{
        }
        
        this.setBounds(300, 0, 700, 680);
-       fieldV = new fieldView();
+       
+       fieldV = new ArrayList<fieldView>();
+       for(int i = 1; i <= 10;i++){
+    	   fieldView fV = new fieldView(50 + i*50, 500, i);
+    	   fieldV.add(fV);
+       }
        addMouseListener(this);
     }
 
@@ -67,19 +73,24 @@ public class BoardPanel extends JPanel implements MouseListener{
         g.drawImage(explorer, 210, 75, this);
         g.drawImage(tent, 260, 78, this);
         
-        fieldV.draw(g);
+        for(int i = 0; i < fieldV.size();i++){
+        	fieldV.get(i).draw(g);
+        }
+        
         
         }
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Point p = e.getPoint();
-		Point c = fieldV.getCenter();
-		double a = (p.x-c.x) * (p.x-c.x);
-		double b = (p.y-c.y) * (p.y-c.y);
-		double cp = 22 * 22;
-		if(a + b < cp ){
-			System.out.println("KATT");
+		for(int i = 0; i < fieldV.size();i++){
+			Point c = fieldV.get(i).getCenter();
+			double a = (p.x-c.x) * (p.x-c.x);
+			double b = (p.y-c.y) * (p.y-c.y);
+			double cp = 22 * 22;
+			if(a + b < cp ){
+				fieldV.get(i).writeConsole();
+			}
 		}
 	}
 

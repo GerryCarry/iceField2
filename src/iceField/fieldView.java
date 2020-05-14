@@ -17,8 +17,10 @@ public class fieldView {
 	private Point pCenter;
 	private Point pCoordinate;
 	private Image image;
+	private int number;
 	
-	public fieldView(){
+	
+	public fieldView(int x, int y, int num){
 		try{
 			image = ImageIO.read(new File("IceField_2.png"));
 		} 
@@ -26,8 +28,9 @@ public class fieldView {
 			System.out.println("ERR");
 		}
 		
-		pCoordinate = new Point(300,500);
-		pCenter = new Point(325,525);
+		pCoordinate = new Point(x,y);
+		pCenter = new Point(x+25,y+25);
+		number = num;
 	}
 	
 	public Point getCenter(){
@@ -37,5 +40,9 @@ public class fieldView {
 	public void draw(Graphics g){
 		g.drawImage(image, pCoordinate.x, pCoordinate.y, null);
 		System.out.println("HALI");
+	}
+	
+	public void writeConsole(){
+		System.out.println(number);
 	}
 }
