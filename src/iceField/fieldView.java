@@ -39,7 +39,6 @@ public class fieldView {
 	
 	public void draw(Graphics g){
 		g.drawImage(image, pCoordinate.x, pCoordinate.y, null);
-		System.out.println("HALI");
 	}
 	
 	public void writeConsole(){
